@@ -9,19 +9,20 @@ import os
 
 
 class test_basemodel(unittest.TestCase):
-    """ """
+    """Test class for the base_model class"""
 
     def __init__(self, *args, **kwargs):
-        """ """
+        """init for the class of basemodel"""
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel
 
     def setUp(self):
-        """ """
+        """ the set up method of the class basemodel """
         pass
 
     def tearDown(self):
+    """The teardown of the class basemodel"""
         try:
             os.remove('file.json')
         except:
@@ -63,35 +64,35 @@ class test_basemodel(unittest.TestCase):
                          i.__dict__))
 
     def test_todict(self):
-        """ """
+        """Testing the to_dict method"""
         i = self.value()
         n = i.to_dict()
         self.assertEqual(i.to_dict(), n)
 
     def test_kwargs_none(self):
-        """ """
+        """Testing kwargs with none """
         n = {None: None}
         with self.assertRaises(TypeError):
             new = self.value(**n)
 
     def test_kwargs_one(self):
-        """ """
+        """Testing Kwargs with one"""
         n = {'Name': 'test'}
         with self.assertRaises(KeyError):
             new = self.value(**n)
 
     def test_id(self):
-        """ """
+        """Testing the id"""
         new = self.value()
         self.assertEqual(type(new.id), str)
 
     def test_created_at(self):
-        """ """
+        """Testing the date created at"""
         new = self.value()
         self.assertEqual(type(new.created_at), datetime.datetime)
 
     def test_updated_at(self):
-        """ """
+        """Testing the datetime updated at"""
         new = self.value()
         self.assertEqual(type(new.updated_at), datetime.datetime)
         n = new.to_dict()
