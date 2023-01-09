@@ -41,15 +41,15 @@ class test_basemodel(unittest.TestCase):
         self.assertFalse(new is i)
 
     def test_kwargs_int(self):
-        """ """
+        """Testing Kwargs with intergers"""
         i = self.value()
         copy = i.to_dict()
-        copy.update({1: 2})
+        copy.update({2: 4})
         with self.assertRaises(TypeError):
             new = BaseModel(**copy)
 
     def test_save(self):
-        """ Testing save """
+        """ Testing save method"""
         i = self.value()
         i.save()
         key = self.name + "." + i.id
