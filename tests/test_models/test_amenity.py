@@ -14,17 +14,18 @@ storage_t = getenv("HBNB_TYPE_STORAGE")
 
 
 class test_Amenity(test_basemodel):
-    """ """
+    """Amnity test class"""
 
     def __init__(self, *args, **kwargs):
-        """ """
+        """Test class"""
         super().__init__(*args, **kwargs)
         self.name = "Amenity"
         self.value = Amenity
 
     def test_name2(self):
-        """ """
+        """testing name types"""
         new = self.value()
+<<<<<<< HEAD
         self.assertEqual(type(new.name), str)
 
 
@@ -176,3 +177,8 @@ class TestAmenity(unittest.TestCase):
         amenity = Amenity()
         string = "[Amenity] ({}) {}".format(amenity.id, amenity.__dict__)
         self.assertEqual(string, str(amenity))
+=======
+        self.assertEqual(type(new.name)), str if
+        		os.getenv('HBNB_TYPE_STORAGE') != else
+        		type(None))
+>>>>>>> 4fbb8e5bcfd58d176e6a05f23608308f65ab4a53
