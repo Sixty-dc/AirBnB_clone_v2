@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String
 import models
 from models.city import City
+from models import storage
 import shlex
 
 
@@ -21,15 +22,13 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
-        var = models.storage.all()
-        lista = []
-        result = []
-        for key in var:
-            city = key.replace('.', ' ')
-            city = shlex.split(city)
-            if (city[0] == 'City'):
-                lista.append(var[key])
-        for elem in lista:
-            if (elem.state_id == self.id):
-                result.append(elem)
-        return (result)
+        """
+        Returns:
+            list: list of cities
+        """
+        related_cities = []
+        cities = storage.all(City)
+        for city in cities.values:
+            if city.state_id == self.id:
+                related_cities.append(city)
+        return related_cities
